@@ -105,16 +105,6 @@ if (platform.startsWith("Win")) {
 }
 
 
-
-console.log("Operating System:", os);
-const osInfo = document.getElementById("osInfo");
-osInfo.textContent = "Operating System: " + os + "User Agent: " + navigator.userAgent + "Platform:" + navigator.platform + " browser name: " + browserName + " browserVersion " + browserVersion;
-
-
-console.log("User Agent:", navigator.userAgent);
-console.log("Platform:", navigator.platform);
-
-
 let browserName;
 let browserVersion;
 
@@ -148,6 +138,18 @@ else {
   browserName = "Unknown";
   browserVersion = "Unknown";
 }
+
+
+
+console.log("Operating System:", os);
+const osInfo = document.getElementById("osInfo");
+osInfo.textContent = "Operating System: " + os + "User Agent: " + navigator.userAgent + "Platform:" + navigator.platform + " browser name: " + browserName + " browserVersion " + browserVersion;
+
+
+console.log("User Agent:", navigator.userAgent);
+console.log("Platform:", navigator.platform);
+
+
 
 console.log("Browser Name:", browserName);
 console.log("Browser Version:", browserVersion);
