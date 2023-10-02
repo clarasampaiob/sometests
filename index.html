@@ -79,41 +79,40 @@
 
 // console.log("Operating System:", os);
 
+
+      
+
+
 const platform = navigator.platform;
 const userAgent = navigator.userAgent;
-      console.log("User Agent:", navigator.userAgent);
-console.log("Platform:", navigator.platform);
-
 
 let os;
 
-if (userAgent.match(/Android/i)) {
+if (platform.startsWith("Win")) {
+  os = "Windows";
+} else if (platform.includes("Mac")) {
+  os = "Mac/iOS";
+} else if (platform.startsWith("Linux")) {
+  os = "Linux";
+} else if (platform.includes("X11")) {
+  os = "UNIX";
+} else if (userAgent.match(/Android/i)) {
   os = "Android";
 } else if (userAgent.match(/(iPhone|iPad|iPod)/i)) {
   os = "iOS";
-} else if (navigator.platform.startsWith("Win")) {
-  os = "Windows";
-} else if (navigator.platform.includes("Mac")) {
-  os = "Mac/iOS";
-} else if (navigator.platform.startsWith("Linux")) {
-  os = "Linux";
-} else if (navigator.platform.includes("X11")) {
-  os = "UNIX";
 } else {
   os = "Unknown";
 }
 
-// Get the <p> element by its id and set its text content
-const osInfo = document.getElementById("osInfo");
-osInfo.textContent = "Operating System: " + os;
 
 
 console.log("Operating System:", os);
 const osInfo = document.getElementById("osInfo");
-osInfo.textContent = "Operating System: " + os;
+osInfo.textContent = "Operating System: " + os + "User Agent: " + navigator.userAgent + "Platform:" + navigator.platform;
 
 
-
+console.log("User Agent:", navigator.userAgent);
+console.log("Platform:", navigator.platform);
     </script>
   </body>
 </html>
