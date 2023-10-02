@@ -108,11 +108,50 @@ if (platform.startsWith("Win")) {
 
 console.log("Operating System:", os);
 const osInfo = document.getElementById("osInfo");
-osInfo.textContent = "Operating System: " + os + "User Agent: " + navigator.userAgent + "Platform:" + navigator.platform;
+osInfo.textContent = "Operating System: " + os + "User Agent: " + navigator.userAgent + "Platform:" + navigator.platform + " browser name: " + browserName + " browserVersion " + browserVersion;
 
 
 console.log("User Agent:", navigator.userAgent);
 console.log("Platform:", navigator.platform);
+
+
+let browserName;
+let browserVersion;
+
+// Check for Chrome
+if (userAgent.includes("Chrome")) {
+  browserName = "Chrome";
+  browserVersion = userAgent.match(/Chrome\/([\d.]+)/)[1];
+}
+// Check for Firefox
+else if (userAgent.includes("Firefox")) {
+  browserName = "Firefox";
+  browserVersion = userAgent.match(/Firefox\/([\d.]+)/)[1];
+}
+// Check for Edge (Chromium-based)
+else if (userAgent.includes("Edg")) {
+  browserName = "Microsoft Edge (Chromium-based)";
+  browserVersion = userAgent.match(/Edg\/([\d.]+)/)[1];
+}
+// Check for Internet Explorer
+else if (userAgent.includes("Trident")) {
+  browserName = "Internet Explorer";
+  browserVersion = userAgent.match(/rv:([\d.]+)/)[1];
+}
+// Check for Safari
+else if (userAgent.includes("Safari")) {
+  browserName = "Safari";
+  browserVersion = userAgent.match(/Version\/([\d.]+)/)[1];
+}
+// If none of the above, consider it as an unknown browser
+else {
+  browserName = "Unknown";
+  browserVersion = "Unknown";
+}
+
+console.log("Browser Name:", browserName);
+console.log("Browser Version:", browserVersion);
+
     </script>
   </body>
 </html>
