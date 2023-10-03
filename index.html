@@ -108,40 +108,34 @@ if (platform.startsWith("Win")) {
 let browserName;
 let browserVersion;
 
-// Check for Chrome
+// Check for Opera
 if (userAgent.includes("OPR") || userAgent.includes("Opera")) {
   browserName = "Opera";
   browserVersion = userAgent.match(/(OPR|Opera)\/([\d.]+)/)[2];
 }
-else if (userAgent.includes("Chrome")) {
-  browserName = "Chrome";
-  browserVersion = userAgent.match(/Chrome\/([\d.]+)/)[1];
-}
-// Check for Firefox
-else if (userAgent.includes("Firefox")) {
-  browserName = "Firefox";
-  browserVersion = userAgent.match(/Firefox\/([\d.]+)/)[1];
-}
-// Check for Edge (Chromium-based)
-else if (userAgent.includes("Edg")) {
-  browserName = "Microsoft Edge (Chromium-based)";
-  browserVersion = userAgent.match(/Edg\/([\d.]+)/)[1];
+// Check for Microsoft Edge (non-Chromium-based)
+else if (userAgent.includes("Edge")) {
+  browserName = "Microsoft Edge (Legacy)";
+  browserVersion = userAgent.match(/Edge\/([\d.]+)/)[1];
 }
 // Check for Internet Explorer
 else if (userAgent.includes("Trident")) {
   browserName = "Internet Explorer";
   browserVersion = userAgent.match(/rv:([\d.]+)/)[1];
 }
+// Check for Firefox
+else if (userAgent.includes("Firefox")) {
+  browserName = "Firefox";
+  browserVersion = userAgent.match(/Firefox\/([\d.]+)/)[1];
+}
 // Check for Safari
 else if (userAgent.includes("Safari")) {
   browserName = "Safari";
   browserVersion = userAgent.match(/Version\/([\d.]+)/)[1];
 }
-
-// Check for Microsoft Edge (non-Chromium-based)
-else if (userAgent.includes("Edge")) {
-  browserName = "Microsoft Edge (Legacy)";
-  browserVersion = userAgent.match(/Edge\/([\d.]+)/)[1];
+else if (userAgent.includes("Chrome")) {
+  browserName = "Chrome";
+  browserVersion = userAgent.match(/Chrome\/([\d.]+)/)[1];
 }
 // If none of the above, consider it as an unknown browser
 else {
