@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
 <head>
   <meta charset="UTF-8">
@@ -11,135 +11,33 @@
       left: 0;
       right: 0;
       text-align: center;
-      /*background-color: rgba(68, 147, 65, 0.5);*/
-      background-color: rgba(93, 227, 88, 0.5); /* Optional: Add a background color for better visibility */
+      background-color: rgba(0, 0, 0, 0.5); /* Optional: Add a background color for better visibility */
       padding: 20px;
     }
-
-    .larger-icon {
-    width: 80px; /* Adjust the width as needed */
-    height: 80px; /* Adjust the height as needed */
-    padding: 10px; /* Adjust the padding as needed */
-  }
   </style>
 </head>
 <body>
-<?php session_start(); $_SESSION['color'] = '#449341'; ?>
-<div class="d-flex justify-content-between fixed-top border-bottom border-dark-subtle">
-     <span class="mt-3 mx-3 mb-2">
-      <i class="bi bi-bookmark-dash-fill fs-5" style="color:<?php echo $_SESSION['color']; ?>"></i>
-      <span style="margin-left: 5px; font-size: 18px; font-weight: bold; color:<?php echo $_SESSION['color']; ?>">Greetings</span>
-    </span>
-     <span class="mt-2 mx-3 mb-2 position-relative d-inline-flex">
-       <i class="bi bi-heart fs-3" style="margin-right: 5px; color:<?php echo $_SESSION['color']; ?>"></i>
-       <span class="position-absolute translate-middle badge rounded-pill mt-2" style="margin-left: 26px; font-size: 10px; background-color:#66D861;">
-    5</span>
-       <i class="bi bi-award fs-3" style="color:<?php echo $_SESSION['color']; ?>"></i>
-       <span class="position-absolute translate-middle badge rounded-pill mt-2" style="margin-left: 60px; font-size: 10px; background-color:#66D861;">
-    10</span>
-     </span>
-</div>
-
-
-
-<!-- <div class="d-flex align-items-center justify-content-center vh-100"> -->
+<div class="d-flex align-items-center justify-content-center vh-100">
 <div id="carouselExample" class="carousel slide">
   <div class="carousel-inner">
-
-
-
     <div class="carousel-item active">
-      <div class="d-flex flex-column align-items-center justify-content-center vh-100">
-        <!-- flex-column to display everythong as block. The rest of the line centralizes the content -->
-        
-          <blockquote class="blockquote mb-4 text-center">
-            <p class="fs-2 fw-bold mb-0">Hello! What's your name?</p>
-            <footer class="text-secondary fs-4">Olá! Qual seu nome?</footer>
-          </blockquote>
-        
-
-
-          <div class="btn-group mt-5" role="group" aria-label="Basic outlined example">
-            <button type="button" class="btn btn-outline-secondary font-16 play-button rounded-circle larger-icon mx-4 border border-0" style="background-color: <?php echo $_SESSION['color']; ?>;">
-                <i class="bi bi-volume-up-fill fs-3 text-white" id="playIcon1"></i>
-            </button>
-            <audio class="audio-element" src="../../media/My_AudioRecord.wav"></audio>
-            <button type="button" class="btn btn-outline-secondary record1 rounded-circle larger-icon mx-4 border border-0" style="background-color: <?php echo $_SESSION['color']; ?>;" data-phrase="Hello! What's your name?" data-lang="en" data-number="1" onclick="speechToText(this)">
-                <i class="bi bi-mic-fill fs-4 text-white"></i>
-                <img src="../../libs/animations/bars.svg" style="display: none; height: 30px;" class="recording-icon1">
-            </button>
-            <button type="button" class="btn btn-outline-secondary border border-0 toggle-star larger-icon rounded-circle mx-4" style="background-color: <?php echo $_SESSION['color']; ?>;" data-star-fill="false">
-                <i class="bi bi-star fs-3 text-white"></i>
-            </button>
-          </div>
-        </div>
-    </div> 
-
-
-
-
-
-    <div class="carousel-item">
-      <div class="d-flex flex-column align-items-center justify-content-center vh-100">
-        
-        <blockquote class="blockquote mb-4 text-center">
-            <p class="fs-2 fw-bold mb-0">How much is this pair of sneakers?</p>
-            <footer class="text-secondary fs-4">Quanto custa o par de tenis?</footer>
-          </blockquote>
-            
-          <div class="btn-group mt-5" role="group" aria-label="Basic outlined example">
-            <button type="button" class="btn btn-outline-secondary font-16 play-button rounded-circle larger-icon mx-4 border border-0" style="background-color: <?php echo $_SESSION['color']; ?>;">
-                <i class="bi bi-volume-up-fill fs-3 text-white" id="playIcon1"></i>
-            </button>
-            <audio class="audio-element" src="../../media/speech_mono.wav"></audio>
-            <button type="button" class="btn btn-outline-secondary record2 rounded-circle larger-icon mx-4 border border-0" style="background-color: <?php echo $_SESSION['color']; ?>;" data-phrase="How much is this pair of sneakers?" data-lang="en" data-number="2" onclick="speechToText(this)">
-                <i class="bi bi-mic-fill fs-4 text-white"></i>
-                <img src="../../libs/animations/bars.svg" style="display: none; height: 30px;" class="recording-icon2">
-            </button>
-            <button type="button" class="btn btn-outline-secondary border border-0 toggle-star larger-icon rounded-circle mx-4" style="background-color: <?php echo $_SESSION['color']; ?>;" data-star-fill="false">
-                <i class="bi bi-star fs-3 text-white"></i>
-            </button>
-          </div>
-        </div>
-        </div> 
-    
-
-
-
-<div class="carousel-item">
-  <div class="d-flex flex-column align-items-center justify-content-center vh-100">
-
-        <blockquote class="blockquote mb-4 text-center">
-            <p class="fs-2 fw-bold mb-0">Do you like chocolate?</p>
-            <footer class="text-secondary fs-4">Gosta de chocolate?</footer>
-          </blockquote>
-            
-          <div class="btn-group mt-5" role="group" aria-label="Basic outlined example">
-            <button type="button" class="btn btn-outline-secondary font-16 play-button rounded-circle larger-icon mx-4 border border-0" style="background-color: <?php echo $_SESSION['color']; ?>;">
-                <i class="bi bi-volume-up-fill fs-3 text-white" id="playIcon1"></i>
-            </button>
-            <audio class="audio-element" src="../../media/audio.mp3"></audio>
-            <button type="button" class="btn btn-outline-secondary record3 rounded-circle larger-icon mx-4 border border-0" style="background-color: <?php echo $_SESSION['color']; ?>;" data-phrase="Do you like chocolate?" data-lang="fr" data-number="3" onclick="speechToText(this)">
-                <i class="bi bi-mic-fill fs-4 text-white"></i>
-                <img src="../../libs/animations/bars.svg" style="display: none; height: 30px;" class="recording-icon3">
-            </button>
-            <button type="button" class="btn btn-outline-secondary border border-0 toggle-star larger-icon rounded-circle mx-4" style="background-color: <?php echo $_SESSION['color']; ?>;" data-star-fill="false">
-                <i class="bi bi-star fs-3 text-white"></i>
-            </button>
-          </div>
-        </div> 
-        </div>
-    
-
-
-<div id="alert-container"></div>
-
-
-
+     <div class="card" style="width: 18rem;">
+ 
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
 </div>
     </div>
-    
-
+    <div class="carousel-item">
+      <img src="https://images.pexels.com/photos/45201/kitty-cat-kitten-pet-45201.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" class="d-block w-100" alt="Image 2" style="height: 500px;">
+    </div>
+    <div class="carousel-item">
+      <img src="https://images.pexels.com/photos/45201/kitty-cat-kitten-pet-45201.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" class="d-block w-100" alt="Image 3" style="height: 500px;">
+    </div>
+  </div>
+</div>
 <div class="carousel-controls">
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -151,79 +49,6 @@
     </button>
   </div>
 </div>
-
-
-
-
-<script>
-        // Audio Player
-        const playButtons = document.querySelectorAll('.play-button');
-        const audioElements = document.querySelectorAll('.audio-element');
-
-        playButtons.forEach((playButton, index) => {
-            const playIcon = playButton.querySelector('i');
-            const audioElement = audioElements[index];
-
-            playButton.addEventListener('click', function () {
-                if (audioElement.paused) {
-                    audioElement.play();
-                    playIcon.classList.remove('bi-volume-up-fill');
-                    playIcon.classList.add('bi-pause-fill');
-                } else {
-                    audioElement.pause();
-                    playIcon.classList.remove('bi-pause-fill');
-                    playIcon.classList.add('bi-volume-up-fill');
-                }
-            });
-
-            audioElement.addEventListener('ended', function () {
-                playIcon.classList.remove('bi-pause-fill');
-                playIcon.classList.add('bi-volume-up-fill');
-            });
-        });
-
-
-
-
-        // Set Star Favorite
-        let isStarFill = false;
-        const toggleButtons = document.querySelectorAll('.toggle-star');
-
-        toggleButtons.forEach((button) => {
-            button.addEventListener('click', function () {
-                const icon = button.querySelector('i');
-                let isStarFill = button.getAttribute('data-star-fill') === 'true';
-                // data-star-fill value is compared to true, isStarFill saves that result
-
-                isStarFill = !isStarFill;
-                button.setAttribute('data-star-fill', isStarFill);
-                // isStarFill receives the opposite value and set it to the data-star-fill
-
-                if (isStarFill) {
-                    icon.classList.remove('bi-star');
-                    icon.classList.add('bi-star-fill', 'text-warning');
-                } else {
-                    icon.classList.remove('bi-star-fill', 'text-warning');
-                    icon.classList.add('bi-star');
-                }
-            });
-        });
-
-
-
-
-       
-          
-             
-             
-
-       
-         
-            
-    </script>
-
-
-
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
