@@ -136,92 +136,12 @@
 
 
 
-<script>
-        // Audio Player
-        const playButtons = document.querySelectorAll('.play-button');
-        const audioElements = document.querySelectorAll('.audio-element');
 
-        playButtons.forEach((playButton, index) => {
-            const playIcon = playButton.querySelector('i');
-            const audioElement = audioElements[index];
-
-            playButton.addEventListener('click', function () {
-                if (audioElement.paused) {
-                    audioElement.play();
-                    playIcon.classList.remove('bi-volume-up-fill');
-                    playIcon.classList.add('bi-pause-fill');
-                } else {
-                    audioElement.pause();
-                    playIcon.classList.remove('bi-pause-fill');
-                    playIcon.classList.add('bi-volume-up-fill');
-                }
-            });
-
-            audioElement.addEventListener('ended', function () {
-                playIcon.classList.remove('bi-pause-fill');
-                playIcon.classList.add('bi-volume-up-fill');
-            });
-        });
+                   
 
 
-
-
-        // Set Star Favorite
-        let isStarFill = false;
-        const toggleButtons = document.querySelectorAll('.toggle-star');
-
-        toggleButtons.forEach((button) => {
-            button.addEventListener('click', function () {
-                const icon = button.querySelector('i');
-                let isStarFill = button.getAttribute('data-star-fill') === 'true';
-                // data-star-fill value is compared to true, isStarFill saves that result
-
-                isStarFill = !isStarFill;
-                button.setAttribute('data-star-fill', isStarFill);
-                // isStarFill receives the opposite value and set it to the data-star-fill
-
-                if (isStarFill) {
-                    icon.classList.remove('bi-star');
-                    icon.classList.add('bi-star-fill', 'text-warning');
-                } else {
-                    icon.classList.remove('bi-star-fill', 'text-warning');
-                    icon.classList.add('bi-star');
-                }
-            });
-        });
-
-
-
-
-        
-
-        function showAlert(message, alertType) {
-          // Get Alert Container Div
-          const alertContainer = document.getElementById('alert-container'); 
-
-          // Create Alert Element.
-          const alertDiv = document.createElement('div');
-          alertDiv.className = `alert alert-${alertType} text-center`;
-          alertDiv.textContent = message;
-          alertDiv.style.position = 'fixed';
-          alertDiv.style.margin = '0';
-          alertDiv.style.left = '0';
-          alertDiv.style.right = '0';
-          alertDiv.style.bottom = '0';
-          alertDiv.style.zIndex = '1000'; // Ensure it's above other elements
-
-          // Append the Alert to the Container.
-          alertContainer.appendChild(alertDiv);
-
-          // Automatically close the alert after a set time (e.g., 5 seconds).
-          setTimeout(function () {
-            alertDiv.remove();
-          }, 4000); // Adjust the time in milliseconds as needed.
-        }
-
-
-            
-    </script>
+       
+          
 
 
 
