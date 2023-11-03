@@ -212,125 +212,13 @@
 
 
 
-        // Speech to Text Browser JS
-        let SpeechRecognition =
-          window.SpeechRecognition || window.webkitSpeechRecognition,
-          recognition,
-          isRecording = false;
+       
+          
+             
+             
 
-        function speechToText(button){
-          const phraseUpper = button.getAttribute("data-phrase");
-          const phraseLowPoints = phraseUpper.toLowerCase();
-          const phraseTrim = phraseLowPoints.replace(/[?!:.,@-]/g, ''); // Remove Ponctuation
-          const phrase = phraseTrim.trim();
-          const lang = button.getAttribute("data-lang");
-          const number = button.getAttribute("data-number");
-          let recBtnNum = "record" + number;
-          let iconBtnNum = "recording-icon" + number;
-          const recordBtn = document.querySelector(`.${recBtnNum}`);
-          const recordingIcon = document.querySelector(`.${iconBtnNum}`);
-          console.log("Phrase:", phrase);
-          console.log("Language:", lang);
-          console.log("Number:", number);
-          // console.log(recordBtn);
-          // console.log("chegou aqui");
-          // console.log(isRecording);
-
-          try {
-            if (isRecording) {
-              recognition.stop(); // Stop the recognition if already recording
-              isRecording = false;
-              recordingIcon.style.display = "none"; // Hide the recording icon
-              recordBtn.querySelector("i").style.display = "inline"; // Show the mic icon
-              // console.log("no try");
-              // console.log(isRecording);
-            } else {
-              recognition = new SpeechRecognition();
-              recognition.lang = lang; // Set the language to French
-              recognition.interimResults = true;
-              recognition.continuous = true; // Set continuous listening HERE
-              recordingIcon.style.display = "inline"; // Show the recording icon
-              recordBtn.querySelector("i").style.display = "none"; // Hide the mic icon
-              recognition.start();
-              isRecording = true; // Update recording state
-              // console.log("no else");
-              // console.log(isRecording);
-              recognition.onresult = (event) => {
-                const speechResult = event.results[0][0].transcript;
-                // Detect when interim results
-                if (event.results[0].isFinal) {
-                  // console.log(speechResult);
-                  transcript = speechResult;
-                  console.log(transcript);
-                  recognition.stop();
-                  transcriptClean = transcript.replace(/[.,?!]/g, '');
-                  transcriptTrim = transcriptClean.trim();
-
-                  if (transcriptTrim == phrase) {
-                    showAlert('Well Done!', 'success'); 
-                  } else {
-                    showAlert('Try again! Your sentence: ' + transcriptTrim, 'danger');
-                  }
-                }
-              };
-              recognition.onspeechend = () => {
-                if (isRecording) {
-                  recognition.stop(); // Stop the recognition if already recording
-                  isRecording = false;
-                  recordingIcon.style.display = "none"; // Hide the recording icon
-                  recordBtn.querySelector("i").style.display = "inline"; // Show the mic icon
-                  // console.log("no speech end");
-                  // console.log(isRecording);
-                }
-              };
-              recognition.onerror = (event) => {
-                isRecording = false; // Update recording state
-                if (event.error === "no-speech") {
-                  console.log("No speech was detected. Stopping...");
-                } else if (event.error === "audio-capture") {
-                  console.log("No microphone was found. Ensure that a microphone is installed.");
-                } else if (event.error === "not-allowed") {
-                  console.log("Permission to use the microphone is blocked.");
-                } else if (event.error === "aborted") {
-                  console.log("Listening Stopped.");
-                } else {
-                  console.log("Error occurred in recognition: " + event.error);
-                }
-                recordingIcon.style.display = "none"; // Hide the recording icon
-                recordBtn.querySelector("i").style.display = "inline"; // Show the mic icon
-              };
-            }
-          } catch (error) {
-            console.log(error);
-          }
-        }
-
-
-        function showAlert(message, alertType) {
-          // Get Alert Container Div
-          const alertContainer = document.getElementById('alert-container'); 
-
-          // Create Alert Element.
-          const alertDiv = document.createElement('div');
-          alertDiv.className = `alert alert-${alertType} text-center`;
-          alertDiv.textContent = message;
-          alertDiv.style.position = 'fixed';
-          alertDiv.style.margin = '0';
-          alertDiv.style.left = '0';
-          alertDiv.style.right = '0';
-          alertDiv.style.bottom = '0';
-          alertDiv.style.zIndex = '1000'; // Ensure it's above other elements
-
-          // Append the Alert to the Container.
-          alertContainer.appendChild(alertDiv);
-
-          // Automatically close the alert after a set time (e.g., 5 seconds).
-          setTimeout(function () {
-            alertDiv.remove();
-          }, 4000); // Adjust the time in milliseconds as needed.
-        }
-
-
+       
+         
             
     </script>
 
