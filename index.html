@@ -1,89 +1,93 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-  <title>XAMPP Project</title>
-  <link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stacked Bar Chart Example</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script> <!-- Include Chart.js datalabels plugin -->
 </head>
-
 <body>
-  <div class="container-index index-page">
-    <h1>Index page</h1>
-  </div>
+    <canvas id="myChart"></canvas>
 
-  <div class="container">
-    <div class="btn-grid">
-      <h1>Modal test</h1>
-      <div class="btn-list">
-        <button class="btn btn-android" id="openFlutterModal">Open Flutter Android</button>
-        <button class="btn btn-ios" id="openNewFlutterModal">Open New Flutter</button>
-      </div>
-    </div>
-  </div>
-  <div class="container">
-    <div class="btn-grid">
-      <h1>Webview test</h1>
-      <div class="btn-list">
-        <button onclick="refreshPage()" class="btn btn-refresh" id="refreshPage">Refresh page</button>
-        <a href="next.html"><button class="btn btn-next" id="nextPage">Next page</button></a>
-      </div>
-    </div>
-  </div>
-  <div class="container">
-    <div class="btn-grid">
-      <h1>Url test</h1>
-      <div class="btn-list">
-        <!-- <a href="https://www.google.com/"><button class="btn btn-google" id="refreshPage">Google </button></a>
-        <a href="https://www.youtube.com/"><button class="btn btn-youtube" id="nextPage">Youtube </button></a> <br> -->
-        <a href="http://192.168.15.10/projetos/language-app/app/exercises/btn-match.php"><button class="btn btn-google" id="refreshPage">BTN MATCH </button></a>
-        <a href="carouselgithub.html"><button class="btn btn-google" id="refreshPage">CAROUSEL COMPLETO NO CSS </button></a>
-        <a href="carousel.html"><button class="btn btn-google" id="refreshPage">CAROUSEL 2</button></a>
-         <a href="carouselbug.html"><button class="btn btn-google" id="refreshPage">CAROUSEL 3</button></a>
-        <a href="http://192.168.15.10/projetos/language-app/app/exercises/drag-drop-list.php"><button class="btn btn-google" id="refreshPage">DRAG & DROP </button></a>
-        <a href="http://192.168.15.10/projetos/language-app/app/exercises/question-options.php"><button class="btn btn-google" id="refreshPage">QUESTION OPTIONS </button></a>
-        <a href="https://www.google.com/"><button class="btn btn-google" id="refreshPage">QUESTION OPTIONS </button></a>
-      </div>
-    </div>
-  </div>
-  <script>
-    function refreshPage() {
-      location.reload();
-    }
+    <script>
+        Chart.register(ChartDataLabels); // Register Chart.js datalabels plugin
 
-    document.getElementById('openFlutterModal').addEventListener('click', function () {
-      WebViewModal.postMessage(JSON.stringify({
-        modal: 'true',
-        phrase: 'Do you like chocolate?',
-        language: 'en-US',
-        theme: 'dark',
-      }));
-    });
-    document.getElementById('openNewFlutterModal').addEventListener('click', function () {
-      WebViewModal.postMessage(JSON.stringify({
-        modal: 'true',
-        phrase: 'Do!, .you :-like!? chocolate?',
-        language: 'russian',
-        learn: 'en-US',
-        theme: 'dark',
-        micMsg: 'удерживайте, чтобы говорить',
-        colorTheme: '#e38526'
-      }));
-    });
-    document.getElementById('openReactModal').addEventListener('click', function () {
-      window.ReactNativeWebView.postMessage(JSON.stringify({
-        modal: 'true', phrase: 'Do you like chocolate?', learn: 'en-US', theme: 'dark'
-      }));
-    });
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const labels = [];
 
+        for (let i = 0; i < 10; i++) {
+            labels.push(i.toString());
+        }
 
-    async function speechResponse(data) {
-      if (await data != undefined) {
-        console.log('Received data from Flutter:', data);
-      } else {
-        console.log('Nothing is being receveid.');
-      }
-    }
-  </script>
+        const data1 = [30, 54, 7, 90, 61, 58, 35, 22, 190, 120];
+        const data2 = [-3, -20, -41, -9, -11, -13, -50, -70, -19, -170];
+
+        // Custom text for positive and negative bars
+        const positiveText = ['whatever', 'Good', 'Great', 'Awesome', 'Amazing', 'Fantastic', 'Superb', 'Terrific', 'Brilliant', 'Impressive'];
+        const negativeText = ['House', 'Coffee', 'Book', 'Table', 'Room', 'Animal', 'Cat', 'Dog', 'Snake', 'Mouse'];
+
+        // Choose colors for positive and negative bars
+        const positiveColor = 'rgba(75, 192, 192, 0.5)'; // Green color for positive bars
+        const negativeColor = 'rgba(255, 99, 132, 0.5)'; // Red color for negative bars
+        const positiveLabel = 'rgba(105, 102, 152, 0.5)'; // Green color for positive bars
+        const negativeLabel = 'rgba(205, 9, 102, 0.5)'; // Red color for negative bars
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [
+                    {
+                        label: 'Positive',
+                        data: data1,
+                        backgroundColor: positiveColor,
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Negative',
+                        data: data2,
+                        backgroundColor: negativeColor,
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                indexAxis: 'y',
+                scales: {
+                    x: {
+                        stacked: true,
+                        beginAtZero: true
+                    },
+                    y: {
+                        stacked: true
+                    }
+                },
+                plugins: {
+                    datalabels: {
+                        align: function(context) {
+                            var value = context.dataset.data[context.dataIndex];
+                            return value > 0 ? 'end' : 'start';
+                        },
+                        anchor: function(context) {
+                            var value = context.dataset.data[context.dataIndex];
+                            return value > 0 ? 'end' : 'start';
+                        },
+                        borderRadius: 3,
+                        color: 'white',
+                        backgroundColor: function(context) {
+                            // Choose background color based on value
+                            return context.dataset.data[context.dataIndex] > 0 ? positiveLabel : negativeLabel;
+                        },
+                        formatter: function(value, context) {
+                            // Display custom text for positive and negative bars
+                            return context.dataset.data[context.dataIndex] > 0 ? positiveText[context.dataIndex] : negativeText[context.dataIndex];
+                        },
+                        padding: 6,
+                    }
+                }
+            }
+        });
+    </script>
 </body>
-
 </html>
